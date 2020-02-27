@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Running Openshift Origin on Silverblue
+tags: Fedora Silverblue Openshift
 ---
 
 I spent last few weeks trying to get Openshift Origin running on Fedora Silverblue, so I said to myself, that I will share my experience with others. I was making it run for [mbbox project](https://github.com/fedora-infra/mbbox), so everything could be find here right after [Vagrant PR](https://github.com/fedora-infra/mbbox/pull/1) will be merged. I will add links to files where applicable. The links are currently only for the PR.
