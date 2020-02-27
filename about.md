@@ -4,12 +4,8 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+I'm software engineer and open source enthusiast.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[michal.konecny@packetseekers.eu](mailto:michal.konecny@packetseekers.eu)
