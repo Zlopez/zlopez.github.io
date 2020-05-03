@@ -4,7 +4,7 @@ title: Running Openshift Origin on Silverblue
 tags: fedora silverblue openshift
 ---
 
-I spent last few weeks trying to get Openshift Origin running on Fedora Silverblue, so I said to myself, that I will share my experience with others. I was making it run for [mbbox project](https://github.com/fedora-infra/mbbox), so everything could be find here right after [Vagrant PR](https://github.com/fedora-infra/mbbox/pull/1) will be merged. I will add links to files where applicable. The links are currently only for the PR.
+I spent last few weeks trying to get Openshift Origin running on Fedora Silverblue, so I said to myself, that I will share my experience with others. I was making it run for [mbbox project](https://github.com/fedora-infra/mbbox), so everything could be find [here](https://github.com/fedora-infra/mbbox/tree/master/ansible/roles/openshift-311). I will add links to files where applicable.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ To install vagrant and ansible on Silverblue, unfortunately you need to layer it
 `rpm-ostree install libvirt vagrant vagrant-sshfs ansible`
 
 ## Setting the environment
-Vagrant environment is defined in [*Vagrantfile*](https://github.com/fedora-infra/mbbox/blob/08ee9ca747b455b894a576a40e4c042ac7bd08b8/Vagrantfile) and then provisioned by [ansible role](https://github.com/fedora-infra/mbbox/blob/08ee9ca747b455b894a576a40e4c042ac7bd08b8/ansible/roles/mbbox-dev/tasks/openshift.yml).
+Vagrant environment is defined in [*Vagrantfile*](https://github.com/fedora-infra/mbbox/blob/master/Vagrantfile) as mbbox_os311 and then provisioned by [ansible role](https://github.com/fedora-infra/mbbox/tree/master/ansible/roles/openshift-311).
 
 ### Vagrantfile
 There are few things in the Vagrantfile that I want to explain related to Openshift.
@@ -120,7 +120,7 @@ I will go through every task in ansible provisioning file for OpenShift except t
 
 9. (Optional) Copy template
 
-   If you want to work with the database it is good to use template. The templates could be obtained from [openshift-ansible](https://github.com/openshift/openshift-ansible/tree/release-3.11/roles/openshift_examples/files/examples/x86_64/db-templates), but for the PostgreSQL I needed few changes to make it work, so the updated template could be found [here](https://github.com/fedora-infra/mbbox/blob/08ee9ca747b455b894a576a40e4c042ac7bd08b8/ansible/roles/mbbox-dev/files/postgresql-ephemeral-template.json). I also recommend to use ephemeral templates in vagrant, otherwise you need persistent volume, which is one thing I didn't figure out how to setup.  
+   If you want to work with the database it is good to use template. The templates could be obtained from [openshift-ansible](https://github.com/openshift/openshift-ansible/tree/release-3.11/roles/openshift_examples/files/examples/x86_64/db-templates), but for the PostgreSQL I needed few changes to make it work, so the updated template could be found [here](https://github.com/fedora-infra/mbbox/blob/master/ansible/roles/openshift-311/files/postgresql-ephemeral-template.json). I also recommend to use ephemeral templates in vagrant, otherwise you need persistent volume, which is one thing I didn't figure out how to setup.  
    
    ```
    copy: src=postgresql-ephemeral-template.json dest=/tmp/postgresql-ephemeral-template.json
