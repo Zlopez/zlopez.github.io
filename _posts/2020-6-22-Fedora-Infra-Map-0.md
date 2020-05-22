@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Fedora Infra Map #0
+title: Fedora Infra Map - First Steps
 tags: fedora clean_architecture fedora_infra_map
 ---
 
