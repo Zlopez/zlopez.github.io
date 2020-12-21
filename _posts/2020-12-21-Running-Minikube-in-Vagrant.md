@@ -89,12 +89,14 @@ I will go through every task related to Minikube in ansible provisioning file so
    
    
    {% raw %}
+   ```
    - name: Ensure user is added to docker group
      user:
        name: "{{ dev_username }}"
        groups: ['docker']
        append: yes
      become: yes
+   ```
    {% endraw %}
 
    This step will add user to docker group. In our case `dev_username` variable is set to `vagrant`, which is the default user for Vagrant created virtual machines. To allow the vagrant user to benefit from this group ssh connection needs to be reset.
@@ -134,29 +136,35 @@ I will go through every task related to Minikube in ansible provisioning file so
    Unfortunately Minikube isn't packaged in Fedora and it needs to be downloaded from official site, but at least it's distributed as RPM package.
    
    {% raw %}
+   ```
    - name: Download minikube
      get_url:
        url: https://storage.googleapis.com/minikube/releases/latest/minikube-{{minikube_version}}.x86_64.rpm
        dest: /tmp/
+   ```
    {% endraw %}
 
    This task will download the specific minikube version (in our case the `minikube_version` is set in [defaults](https://github.com/fedora-infra/mbbox/blob/master/ci/roles/openshift-osdk/defaults/main.yml) to `1.15.1-0`).
    
    {% raw %}
+   ```
    - name: Install minikube
      dnf:
        name: /tmp/minikube-{{minikube_version}}.x86_64.rpm
        state: present
        disable_gpg_check: true
+   ```
    {% endraw %}
    
    Installation is done using the dnf ansible module with disabled GPG check (RPM isn't signed by Fedora, so it's understandable that the signature is not recognized).
    
    {% raw %}
+   ```
    - name: Set minikube default driver to docker
      command: minikube config set vm-driver docker
      become: yes
      become_user: "{{ dev_username }}"
+   ```
    {% endraw %}
    
    The last thing that needs to be done before you can run the Minikube is to set the driver to docker, this is done as the specifically as a `vagrant` user. 
